@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const Booking = require("./models/Booking");
@@ -9,8 +10,8 @@ const transporter = nodemailer.createTransport({
     secure: true,
 
     auth: {
-        user: "jvenugopal23@gmail.com",
-        pass: "rlkq spsc mynh qakb"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     },
 
     tls: {
@@ -32,7 +33,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://jvenugopal23_db_user:COnBwSOGvPu7iUDC@cluster0.xvdmnej.mongodb.net/?appName=Cluster0")
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
@@ -106,8 +107,8 @@ app.post("/book", async (req, res) => {
         await booking.save();
 
 const mailOptions = {
-    from: "jvenugopal23@gmail.com",
-    to: "jvenugopal23@gmail.com",
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
     subject: "New Booking - Jai Sriram Travels",
 
     text: `
