@@ -13,6 +13,7 @@
   "dependencies": {
     "@capacitor/cli": "^8.5.1",
     "@capacitor/core": "^8.5.1",
+    "@getbrevo/brevo": "^6.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
