@@ -122,7 +122,12 @@ Status: ${booking.status}
     `
 };
 
-await transporter.sendMail(mailOptions);
+try {
+    await transporter.sendMail(mailOptions);
+    console.log("✅ Booking email sent");
+} catch (error) {
+    console.log("⚠️ Booking saved, but email could not be sent:", error.message);
+}
 
 res.redirect("/admin/bookings");    
     } catch (error) {
